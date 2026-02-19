@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noshahi TAS — Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <div class="d-flex" id="wrapper">
+        <!-- Admin Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <i class="bi bi-shield-lock"></i>
+                </div>
+                <span class="brand-text">Noshahi <span class="text-accent">Admin</span></span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-link active" data-view="overview">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Overview</span>
+                </a>
+                <a href="#" class="nav-link" data-view="employees">
+                    <i class="bi bi-people"></i>
+                    <span>Employees</span>
+                </a>
+                <a href="#" class="nav-link" data-view="screenshots">
+                    <i class="bi bi-images"></i>
+                    <span>Screenshots</span>
+                </a>
+                <a href="#" class="nav-link" data-view="reports">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    <span>Reports</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="index.html" class="nav-link admin-link">
+                    <i class="bi bi-arrow-left"></i>
+                    <span>Employee App</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+
+            <!-- Top Bar -->
+            <div class="topbar">
+                <div class="topbar-left">
+                    <button class="btn btn-link sidebar-toggle" id="sidebarToggle">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <h5 class="page-title mb-0" id="pageTitle">Dashboard Overview</h5>
+                </div>
+                <div class="topbar-right">
+                    <div class="date-display">
+                        <i class="bi bi-calendar3"></i>
+                        <span id="currentDate"></span>
+                    </div>
+                    <div class="topbar-divider"></div>
+                    <div class="admin-badge">
+                        <i class="bi bi-shield-fill-check"></i> Admin
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ OVERVIEW VIEW ============ -->
+            <div class="view active" id="overviewView">
+                <div class="container-fluid p-4">
+
+                    <!-- Top Stats -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-3">
+                            <div class="stat-card stat-glow-yellow">
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #FFB800, #FF8C00);">
+                                    <i class="bi bi-people-fill"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-value">12</div>
+                                    <div class="stat-label">Total Employees</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card stat-glow-green">
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #4CAF50, #2E7D32);">
+                                    <i class="bi bi-person-check-fill"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-value" id="activeCount">8</div>
+                                    <div class="stat-label">Active Now</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card stat-glow-red">
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #E63946, #C62828);">
+                                    <i class="bi bi-lightning-charge-fill"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-value">72%</div>
+                                    <div class="stat-label">Avg Activity</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card stat-glow-purple">
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #7C4DFF, #512DA8);">
+                                    <i class="bi bi-clock-fill"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <div class="stat-value">86.5h</div>
+                                    <div class="stat-label">Hours Today</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Activity Chart -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-lg-8">
+                            <div class="card content-card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0"><i class="bi bi-graph-up me-2"></i>Team Activity — Today</h6>
+                                    <select class="form-select form-select-sm" style="width:auto;">
+                                        <option>Today</option>
+                                        <option>This Week</option>
+                                        <option>This Month</option>
+                                    </select>
+                                </div>
+                                <div class="card-body">
+                                    <div class="hourly-chart" id="teamHourlyChart"></div>
+                                    <div class="hourly-labels" id="teamHourlyLabels"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card content-card h-100">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="bi bi-pie-chart me-2"></i>Activity Breakdown</h6>
+                                </div>
+                                <div class="card-body d-flex flex-column justify-content-center">
+                                    <div class="breakdown-item mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <small>High Activity (>70%)</small>
+                                            <small class="text-success fw-bold">5 employees</small>
+                                        </div>
+                                        <div class="progress" style="height:8px;background:var(--surface);">
+                                            <div class="progress-bar bg-success" style="width:42%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="breakdown-item mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <small>Medium Activity (40-70%)</small>
+                                            <small class="text-warning fw-bold">4 employees</small>
+                                        </div>
+                                        <div class="progress" style="height:8px;background:var(--surface);">
+                                            <div class="progress-bar bg-warning" style="width:33%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="breakdown-item mb-3">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <small>Low Activity (<40%)< /small>
+                                                    <small class="text-danger fw-bold">1 employee</small>
+                                        </div>
+                                        <div class="progress" style="height:8px;background:var(--surface);">
+                                            <div class="progress-bar bg-danger" style="width:8%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="breakdown-item">
+                                        <div class="d-flex justify-content-between mb-1">
+                                            <small>Offline / Not Tracking</small>
+                                            <small class="text-muted fw-bold">2 employees</small>
+                                        </div>
+                                        <div class="progress" style="height:8px;background:var(--surface);">
+                                            <div class="progress-bar" style="width:17%;background:var(--border-color);">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Employee Quick List -->
+                    <div class="card content-card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0"><i class="bi bi-people me-2"></i>Team Status</h6>
+                            <a href="#" class="btn btn-sm btn-outline-warning"
+                                onclick="switchAdminView('employees')">View All</a>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee</th>
+                                            <th>Status</th>
+                                            <th>Hours Today</th>
+                                            <th>Activity</th>
+                                            <th>Screenshots</th>
+                                            <th>Last Active</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="overviewEmployeeTable"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ EMPLOYEES VIEW ============ -->
+            <div class="view" id="employeesView">
+                <div class="container-fluid p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h5 class="mb-1">Employee Management</h5>
+                            <p class="text-muted mb-0">Monitor team members and their tracking data</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <div class="input-group input-group-sm" style="width: 250px;">
+                                <span class="input-group-text bg-transparent border-secondary text-muted"><i
+                                        class="bi bi-search"></i></span>
+                                <input type="text" class="form-control" placeholder="Search employees..."
+                                    id="employeeSearch" oninput="filterEmployees()">
+                            </div>
+                            <select class="form-select form-select-sm" style="width:auto;" id="statusFilter"
+                                onchange="filterEmployees()">
+                                <option value="all">All Status</option>
+                                <option value="online">Online</option>
+                                <option value="idle">Idle</option>
+                                <option value="offline">Offline</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="card content-card">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee</th>
+                                            <th>Department</th>
+                                            <th>Status</th>
+                                            <th>Today's Hours</th>
+                                            <th>Week Hours</th>
+                                            <th>Activity</th>
+                                            <th>Screenshots</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="fullEmployeeTable"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ SCREENSHOTS VIEW ============ -->
+            <div class="view" id="screenshotsView">
+                <div class="container-fluid p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h5 class="mb-1">Team Screenshots</h5>
+                            <p class="text-muted mb-0">Review employee screenshots across the team</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <select class="form-select form-select-sm" style="width:auto;" id="screenshotEmployeeFilter"
+                                onchange="filterScreenshots()">
+                                <option value="all">All Employees</option>
+                            </select>
+                            <select class="form-select form-select-sm" style="width:auto;">
+                                <option>Today</option>
+                                <option>Yesterday</option>
+                                <option>This Week</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row g-3" id="adminScreenshotGrid"></div>
+                </div>
+            </div>
+
+            <!-- ============ REPORTS VIEW ============ -->
+            <div class="view" id="reportsView">
+                <div class="container-fluid p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h5 class="mb-1">Activity Reports</h5>
+                            <p class="text-muted mb-0">Detailed activity analytics for the team</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <select class="form-select form-select-sm" style="width:auto;">
+                                <option>This Week</option>
+                                <option>Last Week</option>
+                                <option>This Month</option>
+                            </select>
+                            <button class="btn btn-sm btn-warning"><i class="bi bi-download me-1"></i>Export</button>
+                        </div>
+                    </div>
+
+                    <!-- Weekly Summary -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-lg-6">
+                            <div class="card content-card">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="bi bi-bar-chart me-2"></i>Weekly Hours per Employee</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div id="weeklyHoursChart"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card content-card">
+                                <div class="card-header">
+                                    <h6 class="mb-0"><i class="bi bi-activity me-2"></i>Weekly Activity Trend</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div id="weeklyActivityChart"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Report Table -->
+                    <div class="card content-card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0"><i class="bi bi-table me-2"></i>Detailed Report</h6>
+                            <span class="badge bg-accent">12 employees</span>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee</th>
+                                            <th>Mon</th>
+                                            <th>Tue</th>
+                                            <th>Wed</th>
+                                            <th>Thu</th>
+                                            <th>Fri</th>
+                                            <th>Total</th>
+                                            <th>Avg Activity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="reportTable"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Screenshot Modal -->
+    <div class="modal fade" id="screenshotModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark">
+                <div class="modal-header border-secondary">
+                    <h6 class="modal-title text-white" id="ssModalTitle">Screenshot</h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center p-2">
+                    <img src="" id="ssModalImg" class="img-fluid rounded" alt="Screenshot">
+                </div>
+                <div class="modal-footer border-secondary justify-content-between">
+                    <small class="text-muted" id="ssModalInfo"></small>
+                    <div>
+                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-flag me-1"></i>Flag</button>
+                        <button class="btn btn-sm btn-outline-light"><i
+                                class="bi bi-download me-1"></i>Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

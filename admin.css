@@ -1,0 +1,308 @@
+/* =============================================
+   NOSHAHI TAS — ADMIN-SPECIFIC STYLES
+   ============================================= */
+
+/* Admin Badge */
+.admin-badge {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: white;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Stat Glow Effects */
+.stat-glow-yellow:hover {
+    box-shadow: 0 4px 24px rgba(255, 184, 0, 0.15);
+}
+
+.stat-glow-green:hover {
+    box-shadow: 0 4px 24px rgba(76, 175, 80, 0.15);
+}
+
+.stat-glow-red:hover {
+    box-shadow: 0 4px 24px rgba(230, 57, 70, 0.15);
+}
+
+.stat-glow-purple:hover {
+    box-shadow: 0 4px 24px rgba(124, 77, 255, 0.15);
+}
+
+/* ============ EMPLOYEE TABLE ============ */
+.employee-row {
+    cursor: pointer;
+}
+
+.employee-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.employee-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.employee-name {
+    font-weight: 600;
+    font-size: 0.88rem;
+}
+
+.employee-email {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-badge.online {
+    background: rgba(76, 175, 80, 0.15);
+    color: #4CAF50;
+}
+
+.status-badge.idle {
+    background: rgba(255, 184, 0, 0.15);
+    color: #FFB800;
+}
+
+.status-badge.offline {
+    background: rgba(108, 108, 128, 0.15);
+    color: #6C6C80;
+}
+
+.status-badge .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-badge.online .dot {
+    background: #4CAF50;
+}
+
+.status-badge.idle .dot {
+    background: #FFB800;
+}
+
+.status-badge.offline .dot {
+    background: #6C6C80;
+}
+
+/* ============ FORM CONTROLS ============ */
+.input-group-text {
+    border-color: var(--border-color);
+}
+
+.form-control {
+    background-color: var(--surface);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.form-control:focus {
+    background-color: var(--surface);
+    color: var(--text-primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.15);
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+}
+
+/* ============ ADMIN SCREENSHOT CARDS ============ */
+.admin-screenshot-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.admin-screenshot-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+    box-shadow: var(--shadow);
+}
+
+.admin-screenshot-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.admin-screenshot-card .card-body {
+    padding: 12px;
+}
+
+.admin-screenshot-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-screenshot-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-screenshot-user img {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+}
+
+.admin-screenshot-user span {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* ============ WEEKLY CHARTS ============ */
+.weekly-bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    height: 200px;
+    padding: 0 10px;
+}
+
+.weekly-bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.weekly-bar {
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+    min-height: 4px;
+    transition: height 0.6s ease;
+    position: relative;
+}
+
+.weekly-bar:hover {
+    opacity: 0.8;
+}
+
+.weekly-bar-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.weekly-bar-value {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+/* Activity dots chart */
+.activity-trend {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 20px 0;
+}
+
+.trend-day {
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+}
+
+.trend-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: white;
+    transition: var(--transition);
+}
+
+.trend-circle:hover {
+    transform: scale(1.1);
+}
+
+.trend-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.trend-hours {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    margin-top: 2px;
+}
+
+/* ============ BUTTONS ============ */
+.btn-outline-warning {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline-warning:hover {
+    background: var(--primary);
+    color: var(--dark-bg);
+}
+
+.btn-warning {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--dark-bg);
+    font-weight: 600;
+}
+
+.btn-warning:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: var(--dark-bg);
+}
+
+/* Action buttons */
+.action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: transparent;
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.85rem;
+}
+
+.action-btn:hover {
+    background: rgba(255, 184, 0, 0.1);
+    color: var(--primary);
+    border-color: var(--primary);
+}
